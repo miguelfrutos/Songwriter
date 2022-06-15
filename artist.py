@@ -1,3 +1,6 @@
+#!pip install lyricsgenius
+#!pip install spotipy
+
 import os
 import time
 import json
