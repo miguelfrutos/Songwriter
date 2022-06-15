@@ -21,4 +21,6 @@ IE Students of the MSc Business Analytics & Big Data. Team Power Rangers:
 ### Structure
 
 ### 1- Ingestion - Producer (Python app)
-[Tweepy](http://www.tweepy.org/)  is a python wrapper for the Spotify API that allowed us to easily collect in real-time.
+- [Spotipy](https://spotipy.readthedocs.io/en/2.9.0/) is a python wrapper for the Spotify API that allowed us to easily collect in real-time.
+- [Spotify API](https://developer.spotify.com/dashboard/applications) 
+- [Genius API](https://genius.com/api-clients)
