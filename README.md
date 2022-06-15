@@ -1,7 +1,7 @@
-# Songwriter
-
-![header](Imgs/101.gif)
-
+# The Songwriter 
+<p align="center">
+<img width="350" height="200" src="imgs/growth.gif">
+</p>
 
 # Project Motivation
 The music industry and artists are under pressure to generate higher output more quickly. Harnessing creativity and overcoming writers’ blocks when writing lyrics and music pieces are challenging.
