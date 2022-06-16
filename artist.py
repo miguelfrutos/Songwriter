@@ -47,11 +47,29 @@ uri = artist['uri']
 spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 results = spotify.artist_top_tracks(uri)
 
+
 #including the songs into a list
 songs = []
 for track in results['tracks'][:10]:
     songs.append(track['name'])
 
+
+    
+birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
+#spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+
+results = sp.artist_albums(birdy_uri, album_type='album')
+albums = results['items']
+while results['next']:
+    results = spotify.next(results)
+    albums.extend(results['items'])
+
+for album in albums:
+    print(album['name'])
+    
+    
+   
+    
 #our genius_object
 genius = lg.Genius(genius_access_token)
 
