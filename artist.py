@@ -29,7 +29,23 @@ os.environ.setdefault('SPOTIPY_CLIENT_SECRET', spotipy_client_secret)
 os.environ.setdefault('SPOTIPY_REDIRECT_URI', spotipy_redirect_uri)
 os.environ.setdefault('GENIUS_ACCESS_TOKEN', genius_access_token)
 
+
+######SPOTIFY API CONNECTION#########
 # Spotify object with the Credentials
+
+# ALTERNATIVELY: Set environment variables in Windows manually
+### os.environ['SPOTIPY_CLIENT_ID'] = ''
+### os.environ['SPOTIPY_CLIENT_SECRET'] = ''
+### os.environ['GENIUS_ACCESS_TOKEN'] = ''
+
+spotify_client_id = os.environ['SPOTIPY_CLIENT_ID']
+spotify_secret = os.environ['SPOTIPY_CLIENT_SECRET']
+#spotify_redirect_uri = os.environ['SPOTIPY_REDIRECT_URI']
+genius_access_token = os.environ['GENIUS_ACCESS_TOKEN']
+
+
+
+#Spotify Credentials
 spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
 # Include the band or artist
@@ -56,6 +72,9 @@ songs = []
 for track in results['tracks'][:10]:
     songs.append(track['name'])
 
+
+
+# List albums of an artist: example Birdy    
 birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
 
 results = spotify.artist_albums(birdy_uri, album_type='album')
@@ -67,6 +86,8 @@ while results['next']:
 for album in albums:
     print(album['name'])
  
+
+######GENIUS API CONNECTION#########    
 #our genius_object
 genius = lg.Genius(genius_access_token)
 
@@ -78,3 +99,19 @@ for song_title in songs:
 
 #Print the songs searched
 print(songs)
+
+
+genius2 = lg.Genius('Client_Access_Token_Goes_Here', skip_non_songs=True, 
+                   excluded_terms=["(Remix)", "(Live)"], remove_section_headers=True)
+
+def get_lyrics(arr, k):
+    c = 0
+    for name in arr:
+        try:
+            songs = (genius.search_artist(name, max_songs=k, sort='popularity')).songs
+            s = [song.lyrics for song in songs]
+            file.write("\n \n   <|endoftext|>   \n \n".join(s))
+            c += 1
+            print(f"Songs grabbed:{len(s)}")
+        except:
+            print(f"some exception at {name}: {c}")
