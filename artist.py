@@ -56,9 +56,8 @@ for track in results['tracks'][:10]:
 
     
 birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
-#spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 
-results = sp.artist_albums(birdy_uri, album_type='album')
+results = spotify.artist_albums(birdy_uri, album_type='album')
 albums = results['items']
 while results['next']:
     results = spotify.next(results)
