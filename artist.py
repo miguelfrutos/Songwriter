@@ -6,32 +6,36 @@ import time
 import json
 import spotipy
 import lyricsgenius as lg
+import configparser
+import subprocess
 
 import spotipy
 import sys
 from spotipy.oauth2 import SpotifyClientCredentials
 
-#Envionment Variables
+# Envionment Variables with ConfigParser
+cfg = configparser.ConfigParser()
+cfg.read('credentials.ini')
 
-## Include in the environment the following temporal variables
+## Getting the environment variables from credentials.ini file
+spotipy_client_id=cfg.get('CREDENTIALS','spotipy_client_id')
+spotipy_client_secret=cfg.get('CREDENTIALS','spotipy_client_secret')
+spotipy_redirect_uri=cfg.get('CREDENTIALS','spotipy_redirect_uri')
+genius_access_token=cfg.get('CREDENTIALS','genius_access_token')
 
-### export SPOTIPY_CLIENT_ID=''
-### export SPOTIPY_CLIENT_SECRET=''
-### export SPOTIPY_REDIRECT_URI=''
-### export GENIUS_ACCESS_TOKEN=''
+## Setting up the environment variables
+os.environ.setdefault('SPOTIPY_CLIENT_ID', spotipy_client_id)
+os.environ.setdefault('SPOTIPY_CLIENT_SECRET', spotipy_client_secret)
+os.environ.setdefault('SPOTIPY_REDIRECT_URI', spotipy_redirect_uri)
+os.environ.setdefault('GENIUS_ACCESS_TOKEN', genius_access_token)
 
-spotify_client_id = os.environ['SPOTIPY_CLIENT_ID']
-spotify_secret = os.environ['SPOTIPY_CLIENT_SECRET']
-spotify_redirect_uri = os.environ['SPOTIPY_REDIRECT_URI']
-genius_access_token = os.environ['GENIUS_ACCESS_TOKEN']
-
-#Spotify Credentials
+# Spotify object with the Credentials
 spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
-#Include the band or artist
+# Include the band or artist
 artist_name = 'Queen'
 
-#it will return the most popular artist first (sorted by popularity).
+# It will return the most popular artist first (sorted by popularity).
 results = spotify.search(q='artist:' + artist_name, type='artist')
 items = results['artists']['items']
 
@@ -47,14 +51,11 @@ uri = artist['uri']
 spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 results = spotify.artist_top_tracks(uri)
 
-
 #including the songs into a list
 songs = []
 for track in results['tracks'][:10]:
     songs.append(track['name'])
 
-
-    
 birdy_uri = 'spotify:artist:2WX2uTcsvV5OnS0inACecP'
 
 results = spotify.artist_albums(birdy_uri, album_type='album')
@@ -65,10 +66,7 @@ while results['next']:
 
 for album in albums:
     print(album['name'])
-    
-    
-   
-    
+ 
 #our genius_object
 genius = lg.Genius(genius_access_token)
 
