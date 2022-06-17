@@ -99,3 +99,19 @@ for song_title in songs:
 
 #Print the songs searched
 print(songs)
+
+
+genius2 = lg.Genius('Client_Access_Token_Goes_Here', skip_non_songs=True, 
+                   excluded_terms=["(Remix)", "(Live)"], remove_section_headers=True)
+
+def get_lyrics(arr, k):
+    c = 0
+    for name in arr:
+        try:
+            songs = (genius.search_artist(name, max_songs=k, sort='popularity')).songs
+            s = [song.lyrics for song in songs]
+            file.write("\n \n   <|endoftext|>   \n \n".join(s))
+            c += 1
+            print(f"Songs grabbed:{len(s)}")
+        except:
+            print(f"some exception at {name}: {c}")
