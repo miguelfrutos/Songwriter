@@ -8,7 +8,7 @@ import spotipy
 import lyricsgenius as lg
 import configparser
 import subprocess
-
+import re
 import spotipy
 import sys
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -30,8 +30,6 @@ path_txt=cfg.get('TRAIN_DATASET','path_txt')
 artist=cfg.get('INPUTS','artist')
 max_songs=cfg.get('INPUTS','max_songs')
 
-
-  
 # Convert strings into list 
 artists = (Convert(artist))
 max_songs = int(max_songs)
@@ -42,8 +40,9 @@ genius = lg.Genius(genius_access_token,
                     excluded_terms=["Remix", "Live","Demo", "(Remix)", "(Live)"],
                     remove_section_headers=True)
 
-# File to write lyrics to
-file = open(path_txt, "w")  
+# Set up the file to write lyrics to (.txt) and erease previous content
+file = open(path_txt, 'r+')
+file.truncate(0)
 
 def get_lyrics(arr, k):  # Write lyrics of k songs by each artist in arr
     c = 0  # Counter
@@ -51,13 +50,24 @@ def get_lyrics(arr, k):  # Write lyrics of k songs by each artist in arr
         try:
             songs = (genius.search_artist(name, max_songs=k, sort='popularity')).songs
             s = [song.lyrics for song in songs]
-            file.write("\n \n   <|endoftext|>   \n \n".join(s))  # Deliminator
+            file.write("\n \n  \n \n".join(s))
             c += 1
             print(f"Songs grabbed:{len(s)}")
         except:  #  Broad catch which will give us the name of artist and song that threw the exception
             print(f"some exception at {name}: {c}")
 
 
+
 #Specify the artists
 get_lyrics(artists, max_songs)
 
+# Some Cleaning
+# Read file.txt
+with open(path_txt, 'r+') as file:
+    text = file.read()
+# Delete text and Write
+with open(path_txt, 'w') as file:
+    # Delete
+    new_text = re.sub('\d{2}Embed', '',text)
+    # Write
+    file.write(new_text)
