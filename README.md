@@ -20,7 +20,7 @@ The goal of this repo is to show you how you can fine-tune GPT-2 to generate lyr
 ## Structure
 
 <p align="center">
-<img width="350" height="200" src="imgs/structure.png">
+<img src="imgs/structure.png">
 </p>
 
 
