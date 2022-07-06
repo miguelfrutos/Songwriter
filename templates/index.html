@@ -38,27 +38,6 @@
                 <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
             </div>
         </header>
-        <!-- About-->
-        <section class="content-section bg-light" id="about">
-            <div class="container px-4 px-lg-5 text-center">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-10">
-                        <h2>Harness the power of AI to create your song lyrics in less time</h2>
-                        <p class="lead mb-5">
-                            Music artists are under immense pressure to create more original hits in less time. 
-                            A trend that has resulted in high levels
-                            of anxiety among artists and less complex songs due to smaller streaming profits. <br> 
-                            <br>
-                            We believe in a music industry where artist feel less pressure and have more time for creativity. Our NLP
-                            application uses the creativity-enhancing power of AI to help artists write their song lyrics in less time. 
-                            Enabling artists to personalize the lyrics style, our solution empowers them to overcome writers' blocks and create
-                            original lyrics for all of their upcoming hits.                          
-                        </p>
-                        <a class="btn btn-dark btn-xl" href="#services">What We Offer</a>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Services-->
         <section class="content-section bg-primary text-white text-center" id="services">
             <div class="container px-4 px-lg-5">
@@ -96,7 +75,10 @@
                 <!---Initialize form structure and inputs, set method to "POST"--->
                 <div class = "input_variables">
                     <form action = "{{url_for('predict')}}" method = "post" class = "info">
-                        <input style="width:400px" type="text" id="StartText" name="Text" placeholder="Your Text" required="required"/><span style="color:red"> * </span>
+                        <textarea class='message-box' name="message" rows="15" cols="80" placeholder="Enter your piece of lyrics... from here we will hire the artist you choose to continue it!"></textarea><br/>
+                        <input style="width:400px" type="text" id="GENIUS_ACCESS_TOKEN" name="GENIUS_ACCESS_TOKEN" placeholder="GENIUS_ACCESS_TOKEN" required="required"/><span style="color:red"> * </span>
+                        <input style="width:400px" type="text" id="ARTIST" name="ARTIST" placeholder="ARTIST" required="required"/><span style="color:red"> * </span>
+                        <input style="width:400px" type="text" id="MAX_SONGS" maxlength="2" name="MAX_SONGS" placeholder="MAX_SONGS" required="required"/><span style="color:red"> * </span>
                         <br>
                         <br>
                         <label for="danceability">Danceability (between 0 and 100):</label>
@@ -120,15 +102,39 @@
                         <br>
                         <br>
                         <button type="submit" class="btn">Predict</button>
+
                     </form>
                 </div>
                 <br> 
                 <!---Set placeholder for prediction output--->
                 <div class ="pred">
-                    <p class = "result"><b>{{ prediction_text }}</b></p>
+                    <p class = "result" style="white-space: pre-wrap"><b>{{ prediction_text }}</b>
+                    </p>
                 </div>
             </div>
         </section>
+        <!-- About-->
+        <section class="content-section bg-light" id="about">
+            <div class="container px-4 px-lg-5 text-center">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-10">
+                        <h2>Harness the power of AI to create your song lyrics in less time</h2>
+                        <p class="lead mb-5">
+                            Music artists are under immense pressure to create more original hits in less time. 
+                            A trend that has resulted in high levels
+                            of anxiety among artists and less complex songs due to smaller streaming profits. <br> 
+                            <br>
+                            We believe in a music industry where artist feel less pressure and have more time for creativity. Our NLP
+                            application uses the creativity-enhancing power of AI to help artists write their song lyrics in less time. 
+                            Enabling artists to personalize the lyrics style, our solution empowers them to overcome writers' blocks and create
+                            original lyrics for all of their upcoming hits.                          
+                        </p>
+                        <a class="btn btn-dark btn-xl" href="#services">What We Offer</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Callout-->
         <section class="callout">
             <div class="container px-4 px-lg-5 text-center">
@@ -248,7 +254,7 @@
                         <a class="social-link rounded-circle text-white" href="https://github.com/miguelfrutos/Songwriter"><i class="icon-social-github"></i></a>
                     </li>
                 </ul>
-                <p class="text-muted small mb-0">Copyright &copy; Power Lyrics | Team Power Rangers | IE GMBD | 2022</p>
+                <p class="text-muted small mb-0"> Made with ❤️ by Team Power Rangers | IE GMBD | 2022</p>
             </div>
         </footer>
         <!-- Scroll to Top Button-->
