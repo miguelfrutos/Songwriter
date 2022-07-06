@@ -17,7 +17,11 @@ Generative Pretrained Transformer 2 (GPT-2) is, like the name says, based on the
 The goal of this repo is to show you how you can fine-tune GPT-2 to generate lyrics, based on the data you provide to it and the inputs. The idea is then to use the already trained GPT-2  model, fine-tune it to our specific data and then, based on what the model observes, generate what should follow in any given song.
 
 ## Playground 
-Link of the pythonanywhere and explanation.
+Link of the pythonanywhere and explanation:
+
+Link to Video and Playaround with flask into our localhost:
+https://drive.google.com/file/d/1aBEZE9hB_up5bFhLl4G5OtRgU-uxWwEl/view?usp=sharing
+Genius_token:v_DlIr3iACp5OnOalr7mzNahsb5UlysGmKKS1VzDJAfJCxvJdIB4_k0A2jJeLnvo
 
 <p align="center">
 <img  src="imgs/demo.gif">
