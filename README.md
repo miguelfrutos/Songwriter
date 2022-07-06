@@ -19,6 +19,9 @@ The goal of this repo is to show you how you can fine-tune GPT-2 to generate lyr
 ## Playground 
 Link of the pythonanywhere and explanation.
 
+<p align="center">
+<img  src="imgs/demo.gif">
+</p>
 
 ## Structure
 
