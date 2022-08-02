@@ -21,7 +21,7 @@ Link of the pythonanywhere and explanation:
 
 Link to Video and Playaround with flask into our localhost:
 [Video](https://drive.google.com/file/d/1aBEZE9hB_up5bFhLl4G5OtRgU-uxWwEl/view?usp=sharing)
-Genius_token:v_DlIr3iACp5OnOalr7mzNahsb5UlysGmKKS1VzDJAfJCxvJdIB4_k0A2jJeLnvo
+Genius_token:(Include yours)
 
 
 ## Structure
